@@ -1,1 +1,1 @@
-web: gunicorn app:dashboard
+web: sh setup.sh && streamlit run dashboard.app
