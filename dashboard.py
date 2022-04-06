@@ -90,7 +90,7 @@ if id_input == '': #lorsque rien n'a été saisi
 
 elif(int(id_input) in liste_id): #quand un identifiant correct a été saisi on appelle l'API
     
-    API_url = "https://home-credit-default-risk-api.herokuapp.com/"+id_input
+    API_url = "https://home-credit-default-risk-api.herokuapp.com/credit/"+str(id_input)
     
     #Developing for client's score prediction. 
     with st.spinner('Chargement du score du client...'):
