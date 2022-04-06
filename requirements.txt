@@ -285,7 +285,7 @@ typing-extensions==4.1.1
     #   streamlit
 tzdata==2022.1
     # via pytz-deprecation-shim
-tzlocal==2.2
+tzlocal==2.1
     # via streamlit
 urllib3==1.26.8
     # via requests
