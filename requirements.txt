@@ -217,7 +217,7 @@ python-dateutil==2.8.2
     #   streamlit
 pytz-deprecation-shim==0.1.0.post0
     # via tzlocal
-pytz==2022.3
+pytz==2021.3
     # via pandas
 pyzmq==22.3.0
     # via
