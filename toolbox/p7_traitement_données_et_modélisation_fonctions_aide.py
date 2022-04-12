@@ -605,7 +605,7 @@ def interpretation_credits_history_client(client_id, X, title ="Client Credit Hi
     
     #Build credits general pie. 
     specs = [[{"type": "pie"},{"type": "pie"},{"type": "pie"} ]]
-    subplot_titles=("Accepted bureau", "Accepted others","Types others active")
+    subplot_titles=("Accepted bureau", "Accepted others","Types for accepted with others")
     fig = make_subplots(rows=1, 
                           cols=3,
                           specs = specs,
