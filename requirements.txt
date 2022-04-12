@@ -1,7 +1,5 @@
 distributed==2021.8.0
 
-click==8.0.4
-    # via flask
 cloudpickle==2.0.0
 
 dask==2021.8.0
