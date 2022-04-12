@@ -22,8 +22,7 @@ flask==1.1.2
 
 itsdangerous==2.0.1
     
-pillow==8.0.0
-    # via matplotlib
+
 pyparsing==3.0.7
     # via
     #   matplotlib
