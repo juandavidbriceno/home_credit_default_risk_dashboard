@@ -31,7 +31,6 @@ itsdangerous==2.0.1
     #   flask
     #   flask-wtf
     # via flask
-kiwisolver==1.3.2
     # via matplotlib
 markupsafe==2.0.1
     # via
