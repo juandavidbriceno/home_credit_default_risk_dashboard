@@ -27,15 +27,7 @@ flask==1.1.2
     #   click
     #   flask
 itsdangerous==2.0.1
-    # via
-    #   flask
-    #   flask-wtf
-    # via flask
-    # via matplotlib
-markupsafe==2.0.1
-    # via
-    #   jinja2
-    #   wtforms
+    
 matplotlib==3.2.0
     # via -r requirements.in
     # via
