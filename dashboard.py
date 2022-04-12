@@ -141,7 +141,7 @@ elif(int(id_input) in liste_id): #quand un identifiant correct a été saisi on 
                     elif make_choice_2[i] == 'RATIO_CREDIT_ANNUITY':
                         VAR_i = st.sidebar.slider(make_choice_2[i],float(X_total_original[make_choice_2[i]].min()),float(X_total_original[make_choice_2[i]].max()), value=None, step=0.001)
                     else:
-                        VAR_i = st.sidebar.slider(make_choice_2[i], int(X_total_original[make_choice_2[i]].min()),int(X_total_original[make_choice_2[i]].max()), None)
+                        VAR_i = st.sidebar.slider(make_choice_2[i], max(0,int(X_total_original[make_choice_2[i]].min())),min(5000000,int(X_total_original[make_choice_2[i]].max())), None)
                     VARS.append(VAR_i)
 
                 #Update the values of client information based on user dynamics.
