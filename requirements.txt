@@ -16,8 +16,6 @@ sklearn-json==0.1.0
 
 threadpoolctl==2.2.0
 
-cycler==0.11.0
-    # via matplotlib
 flask-wtf==0.14.3
     # via -r requirements.in
 flask==1.1.2
