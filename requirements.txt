@@ -10,8 +10,6 @@ joblib==1.1.0
 
 locket==0.2.1
 
-plotly==5.6.0
-
 scikit-learn==1.0.2
 
 sklearn-json==0.1.0
