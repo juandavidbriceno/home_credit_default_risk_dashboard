@@ -32,7 +32,6 @@ itsdangerous==2.0.1
     #   -r requirements.in
     #   matplotlib
     #   pandas
-gunicorn
     #   scipy
     #   xgboost
 packaging==21.3
