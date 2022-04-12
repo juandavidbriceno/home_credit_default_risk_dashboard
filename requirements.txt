@@ -72,7 +72,7 @@ six==1.16.0
     # via python-dateutil
 typing-extensions==4.1.1
     # via
-    #   importlib-metadata
+    #   importlib-metadataimportlib-metadata==4.11.3
     #   kiwisolver
 werkzeug==2.0.3
     # via flask
