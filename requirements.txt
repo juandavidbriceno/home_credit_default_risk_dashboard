@@ -25,7 +25,6 @@ itsdangerous==2.0.1
 
 pyparsing==3.0.7
 
-typing-extensions==4.1.1
     # via
     #   importlib-metadataimportlib-metadata==4.11.3
     #   kiwisolver
