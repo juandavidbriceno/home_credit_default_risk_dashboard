@@ -100,7 +100,7 @@ elif(int(id_input) in liste_id): #quand un identifiant correct a été saisi on 
     
     agree_2 = st.checkbox('Show third phase of interpretability')
     if agree_2:
-        st.subheader("Comparison with an ensemblse of similar clients (k=100)")
+        st.subheader("Comparison with an ensemble of similar clients (k=100)")
         #Variable choice for interpretation.
         real_columns_1 = X_train_original.select_dtypes(include=[np.float,'int64']).columns
         variables_1 = list(real_columns_1)
