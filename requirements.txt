@@ -23,8 +23,6 @@ flask==1.1.2
     #   -r requirements.in
     #   flask-wtf
     
-    # via matplotlib
-importlib-metadata==4.11.3
     # via
     #   click
     #   flask
