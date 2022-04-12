@@ -21,13 +21,7 @@ flask-wtf==0.14.3
 flask==1.1.2
 
 itsdangerous==2.0.1
-    
 
-pyparsing==3.0.7
-
-    # via
-    #   importlib-metadataimportlib-metadata==4.11.3
-    #   kiwisolver
 werkzeug==2.0.3
     # via flask
 wtforms==2.3.3
