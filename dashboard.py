@@ -64,7 +64,7 @@ elif(int(id_input) in liste_id): #quand un identifiant correct a été saisi on 
     API_url = "https://home-credit-default-risk-api.herokuapp.com/credit/"+str(id_input)
     
     #Developing for client's score prediction. 
-    with st.spinner('Chargement du score du client...'):
+    with st.spinner('Loading the client score...'):
         json_url = urlopen(API_url)
         API_data =json.loads(json_url.read())
         
@@ -109,12 +109,12 @@ elif(int(id_input) in liste_id): #quand un identifiant correct a été saisi on 
         if make_choice_1:
             if agree_3:
             #pl = st.empty()
-                with st.spinner('Chargement des détails de la prédiction...'):
+                with st.spinner('Loading details of predicton...'):
                     fig_3 = interpretation_from_neighbors_client(int(id_input),X_train_original, y_train,make_choice_1,100, colors, '100 neighbors comparison')
                     st.write(fig_3)
 
     if sensibility==True:
-        st.sidebar.markdown("Annotation: variables 'EXT_SOURCE_1', 'EXT_SOURCE_2', and 'EXT_SOURCE_3' could be varied from an scale between 1 to 100 cause sliders are in percent terms.")
+        st.sidebar.markdown("Annotation: variables 'EXT_SOURCE_1', 'EXT_SOURCE_2', and 'EXT_SOURCE_3' could be varied from an scale between 1 to 100 cause their sliders are in percent terms.")
     #The client will select maximun two variables.
         real_columns_2 = X_train_original.select_dtypes(include=[np.float,'int64']).columns
         variables_2 = list(real_columns_2)
@@ -123,43 +123,45 @@ elif(int(id_input) in liste_id): #quand un identifiant correct a été saisi on 
         if agree_4:
             if make_choice_2:
                 VARS = []
+                first_time = True
                 #Create variables following user specifications.
                 for i in range(0,len(make_choice_2)):
                     #Conditions.
                     if make_choice_2[i] == 'AMT_INCOME_TOTAL':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],25000,10000000, value=None, step=1000)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],25000,10000000, value=int(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i])), step=1000)
                     elif make_choice_2[i] == 'EXT_SOURCE_1':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],0,100, value=None, step=1)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],0,100, value=int(float(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i]))*100), step=1)
                     elif make_choice_2[i] == 'EXT_SOURCE_2':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],0,100, value=None, step=1)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],0,100, value=int(float(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i]))*100), step=1)
                     elif make_choice_2[i] == 'EXT_SOURCE_3':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],0,100, value=None, step=1)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],0,100, value=int(float(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i]))*100), step=1)
                     elif make_choice_2[i] == 'PAYMENT_RATE':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],0.00,0.25, value=None, step=0.001)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],0.00,0.30, value=float(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i])), step=0.001)
                     elif make_choice_2[i] == 'RATIO_CREDIT_INCOME':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],float(X_total_original[make_choice_2[i]].min()),float(X_total_original[make_choice_2[i]].max()), value=None, step=0.001)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],float(X_total_original[make_choice_2[i]].min()),float(X_total_original[make_choice_2[i]].max()), value=float(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i])), step=0.001)
                     elif make_choice_2[i] == 'RATIO_CREDIT_ANNUITY':
-                        VAR_i = st.sidebar.slider(make_choice_2[i],float(X_total_original[make_choice_2[i]].min()),float(X_total_original[make_choice_2[i]].max()), value=None, step=0.001)
+                        VAR_i = st.sidebar.slider(make_choice_2[i],float(X_total_original[make_choice_2[i]].min()),float(X_total_original[make_choice_2[i]].max()), value=float(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i])), step=0.001)
                     else:
-                        VAR_i = st.sidebar.slider(make_choice_2[i], max(0,int(X_total_original[make_choice_2[i]].min())),min(5000000,int(X_total_original[make_choice_2[i]].max())), None)
+                        VAR_i = st.sidebar.slider(make_choice_2[i], max(0,int(X_total_original[make_choice_2[i]].min())),min(5000000,int(X_total_original[make_choice_2[i]].max())),int(obtain_specific_value_column(int(id_input),X_train_original,make_choice_2[i])))
                     VARS.append(VAR_i)
-
+                
+                first_time= False
                 #Update the values of client information based on user dynamics.
                 if(len(make_choice_2)==1):
-                    if VARS[0] is not None:
+                    if VARS[0] is not None and first_time ==False:
                         if make_choice_2[0]=='EXT_SOURCE_1' or make_choice_2[0]=='EXT_SOURCE_2' or make_choice_2[0]=='EXT_SOURCE_3':
                             new_client_row, X_train_original_1 = recalculate_row_and_X(int(id_input), X_train_original,make_choice_2[0],float(VARS[0]/100))
                         else:
                             new_client_row, X_train_original_1 = recalculate_row_and_X(int(id_input), X_train_original,make_choice_2[0],float(VARS[0]))     
                 else:
-                    if VARS[0] is not None:
+                    if VARS[0] is not None and first_time ==False:
                         if make_choice_2[0]=='EXT_SOURCE_1' or make_choice_2[0]=='EXT_SOURCE_2' or make_choice_2[0]=='EXT_SOURCE_3':
                             new_client_row, X_train_original_1 = recalculate_row_and_X(int(id_input), X_train_original,make_choice_2[0],float(VARS[0]/100))
                         else:
                             new_client_row, X_train_original_1 = recalculate_row_and_X(int(id_input), X_train_original,make_choice_2[0],float(VARS[0]))
                             
                     for i in range(1,len(make_choice_2)):
-                        if VARS[i] is not None:
+                        if VARS[i] is not None and first_time ==False:
                             if make_choice_2[i]=='EXT_SOURCE_1' or make_choice_2[i]=='EXT_SOURCE_2' or make_choice_2[i]=='EXT_SOURCE_3':
                                 new_client_row, X_train_original_1 = recalculate_row_and_X(int(id_input), X_train_original_1,make_choice_2[i],float(VARS[i]/100))
                             else:
